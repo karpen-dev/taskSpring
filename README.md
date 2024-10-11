@@ -1,9 +1,8 @@
 # TestSpring project  
 ### Web gui
 http://localhost:8080/
-### Commands
+### Reqests
 All tasks - ```GET http://localhost:8080/tasks```   
-
 New task:
 ```
 POST /tasks
