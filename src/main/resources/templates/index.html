@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks system</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .task{
+            margin-bottom: 5px;
+        }
+        #inp::placeholder, #del-inp::placeholder{
+            color: white;
+        }
+        #inp, #del-inp{
+            background: #9ea404;
+            transition: 0.5s;
+            
+            padding-left: 10px;
+        }
+        #inp:focus, #del-inp:focus{
+            background: #626700;
+            transition: 0.5s;
+            border: none;
+        }
+        .btn{
+            font-size: 18px; 
+            margin-left: 10px; 
+            border: none; background: #9ea404; 
+            color: white; 
+            border-radius: 10px; 
+            padding: 5px; 
+            margin-bottom: 20px;
+            transition: 0.5s;
+        }
+        .btn:hover{
+            background: #626700;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body style="background: #0d1117;">
+    <header style="background: #9ea404; color: white; padding: 10px;">
+        <h1>karpen task system</h1>
+    </header>
+    <main>
+        <div class="content">
+            <div class="tasks" style="color: white; background: #222d3d; margin-left: 40px; margin-right: 40px; margin-top: 40px;">
+                <h2 style="font-size: 28px; padding: 10px;">You tasks:</h2>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="one"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="two"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="thr"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="for"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="fiv"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="six"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="sev"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="eig"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="nin"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="ten"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="ele"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="twe"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="the"> </p>
+                </div>
+                <div class="task">
+                    <p style="padding-left: 10px; font-size: 18px;" id="frt"> </p>
+                </div>
+                <div class="task" style="padding-bottom: 10px;">
+                    <p style="padding-left: 10px; font-size: 18px;" id="fft"> </p>
+                </div>
+            </div>
+            <div class="new-task" style="color: white; background: #222d3d; margin-left: 40px; margin-right: 40px; margin-top: 20px;">
+                <h2 style="font-size: 28px; padding: 10px;">Create new task</h2>
+                <div class="input">
+                    <input type="text" id="inp" placeholder="Name task" style="font-size: 18px; margin-left: 10px; border: none; color: white; border-radius: 10px;">
+                    <button class="btn" onclick="createTask()">Create</button>
+                </div>
+            </div>
+            <div class="del-task" style="color: white; background: #222d3d; margin-left: 40px; margin-right: 40px; margin-top: 20px;">
+                <h2 style="font-size: 28px; padding: 10px;">Delete old task</h2>
+                <div class="input">
+                    <input type="text" id="del-inp" placeholder="Id task" style="font-size: 18px; margin-left: 10px; border: none; color: white; border-radius: 10px;">
+                    <button class="btn" onclick="deleteTask()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const one = document.getElementById("one");
+        const two = document.getElementById("two");
+        const thr = document.getElementById("thr");
+        const fort = document.getElementById("fort");
+        const fiv = document.getElementById("fiv");
+        const six = document.getElementById("six");
+        const sev = document.getElementById("sev");
+        const eig = document.getElementById("eig");
+        const nin = document.getElementById("nin");
+        const ten = document.getElementById("ten");
+        const ele = document.getElementById("ele");
+        const twe = document.getElementById("twe");
+        const the = document.getElementById("the");
+        const frt = document.getElementById("frt");
+        const fft = document.getElementById("fft");
+
+        var id = "0";
+        var task;
+
+        fetch('http://localhost:8080/tasks')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    const id = item.id;
+                    const description = JSON.parse(item.description).description; 
+
+                    if (id === 1) {
+                        var num = id + ". ";
+                        one.textContent = num + description;
+                    } else if (id === 2) {
+                        var num = id + ". ";
+                        two.textContent = num + description;
+                    }
+                    else if (id === 3) {
+                        var num = id + ". ";
+                        thr.textContent = num + description;
+                    } else if (id === 4) {
+                        var num = id + ". ";
+                        fort.textContent = num + description;
+                    }
+                    else if (id === 5) {
+                        var num = id + ". ";
+                        fiv.textContent = num + description;
+                    } else if (id === 6) {
+                        var num = id + ". ";
+                        six.textContent = num + description;
+                    }
+                    else if (id === 7) {
+                        var num = id + ". ";
+                        sev.textContent = num + description;
+                    } else if (id === 8) {
+                        var num = id + ". ";
+                        eig.textContent = num + description;
+                    }
+                    else if (id === 9) {
+                        var num = id + ". ";
+                        nin.textContent = num + description;
+                    } else if (id === 10) {
+                        var num = id + ". ";
+                        ten.textContent = num + description;
+                    }
+                    else if (id === 11) {
+                        var num = id + ". ";
+                        ele.textContent = num + description;
+                    } else if (id === 12) {
+                        var num = id + ". ";
+                        twe.textContent = num + description;
+                    }
+                    else if (id === 13) {
+                        var num = id + ". ";
+                        the.textContent = num + description;
+                    } else if (id === 14) {
+                        var num = id + ". ";
+                        frt.textContent = num + description;
+                    }
+                    else if (id === 15) {
+                        var num = id + ". ";
+                        fft.textContent = num + description;
+                    }
+                });
+            })
+            .catch(error => console.error('Ошибка:', error));
+
+            async function createTask() {
+                var inp = document.getElementById("inp").value;
+                try {
+                    const response = await fetch('http://localhost:8080/tasks', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json', 
+                        },
+                        body: JSON.stringify({ description: inp }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Task create error: ' + response.statusText);
+                    }
+
+                    const newTask = await response.json();
+                    console.log('New task created:', newTask); 
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            async function deleteTask() {
+                var delInp = document.getElementById("del-inp").value;
+                try {
+                    const response = await fetch('http://localhost:8080/tasks/' + delInp, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json', 
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Task create error: ' + response.statusText);
+                    }
+
+                    const res = await response.json();
+                    console.log('Task deleted:', res); 
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+    </script>
+</body>
+</html>
