@@ -1,7 +1,7 @@
 # TestSpring project  
 ### Web gui
 http://localhost:8080/
-### Reqests
+### Requests
 All tasks - ```GET http://localhost:8080/tasks```   
 New task:
 ```
