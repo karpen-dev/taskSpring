@@ -1,5 +1,7 @@
 # TestSpring project  
-### Commands POST
+### Web gui
+https://localhost:8080/
+### Commands
 All tasks - ```GET http://localhost:8080/tasks```   
 
 New task:
