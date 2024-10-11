@@ -2,21 +2,22 @@
 ### Commands POST
 All tasks - ```GET http://localhost:8080/tasks```   
 New task:
-```json
+```
 POST /tasks
 Content-Type: application/json
-
 username: karpen
-
+```
+```json
 {
     "description": "Buy milk"
 }
 ```  
 Register user:
-```json
+```
 POST /users/register
 Content-Type: application/json
-        
+```
+```json
 {
     "username": "karpen",
     "password": "securePass123",
