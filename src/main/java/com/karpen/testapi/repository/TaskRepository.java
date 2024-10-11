@@ -1,4 +1,4 @@
-package com.karpen.testapi;
+package com.karpen.testapi.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

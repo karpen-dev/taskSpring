@@ -1,10 +1,9 @@
 package com.karpen.testapi.controller;
 
-import com.karpen.testapi.TaskRepository;
+import com.karpen.testapi.repository.TaskRepository;
 import com.karpen.testapi.model.Task;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
