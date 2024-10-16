@@ -37,9 +37,24 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public String deleteTask(@PathVariable Long id){
-        tasks.removeIf(task -> task.getId().equals(id));
-        taskRepository.writeTasks(tasks);
+        Task taskToDelete = tasks.stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst()
+                .orElse(null);
 
-        return "Task with ID " + id + "deleted.";
+        if (taskToDelete != null){
+            tasks.removeIf(task -> task.getId().equals(id));
+
+            for (Task task : tasks){
+                if (task.getId() > id){
+                    task.setId(task.getId() - 1);
+                }
+            }
+
+            return "Task with ID" + id + " deleted.";
+        } else {
+            return "Task with ID "+ id + " not found.";
+        }
+
     }
 }
