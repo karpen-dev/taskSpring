@@ -1,4 +1,6 @@
-# TestSpring project  
+# TaskSpring project
+![Static Badge](https://img.shields.io/badge/karpen-taskSpring-taskSpring)
+![GitHub top language](https://img.shields.io/github/languages/top/karpen-dev/taskSpring)
 ### Web gui
 http://localhost:8080/
 ### Requests
